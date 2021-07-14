@@ -1377,6 +1377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 1379838658}
+  _player: {fileID: 1968292580}
   _speed: 4
 --- !u!114 &1968292580
 MonoBehaviour:

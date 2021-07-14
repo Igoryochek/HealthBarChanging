@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(HealthBarViewer))]
 public class Player : MonoBehaviour
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
 
     private HealthBarViewer _healthBarViewer;
     private float _health;
+
+    public event UnityAction<float> HealthChanged;
 
     private void Start()
     {
@@ -26,7 +29,7 @@ public class Player : MonoBehaviour
             _health = _maxHealth;
         }
 
-        StartCoroutine(_healthBarViewer.ChangeHealth(_health));
+        HealthChanged?.Invoke(_health);
     }
 
     public void ApplyDamage(float damage)
@@ -38,6 +41,6 @@ public class Player : MonoBehaviour
             _health = _minHealth;
         }
 
-        StartCoroutine(_healthBarViewer.ChangeHealth(_health));
+        HealthChanged?.Invoke(_health);
     }
 }
