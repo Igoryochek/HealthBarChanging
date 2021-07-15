@@ -12,12 +12,12 @@ public class HealthBarViewer : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.HealthChanged += StartChangeSlider;
+        _player.HealthChanged += OnChangeSlider;
     }
 
     private void OnDisable()
     {
-        _player.HealthChanged -= StartChangeSlider;
+        _player.HealthChanged -= OnChangeSlider;
     }
 
     private IEnumerator ChangeHealth(float targetHealth)
@@ -25,11 +25,11 @@ public class HealthBarViewer : MonoBehaviour
         while (_slider.value != targetHealth)
         {
             _slider.value = Mathf.MoveTowards(_slider.value, targetHealth, _speed * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
     }
 
-    private void StartChangeSlider(float healthValue)
+    private void OnChangeSlider(float healthValue)
     {
         StartCoroutine(ChangeHealth(healthValue));
     }
