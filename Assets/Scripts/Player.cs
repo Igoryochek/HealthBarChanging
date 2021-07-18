@@ -1,44 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth;
-    [SerializeField] private float _minHealth;
+    [SerializeField] private int _maxHealth;
+    [SerializeField] private int _minHealth;
 
-    private float _health;
-
-    public event UnityAction<float> HealthChanged;
+    public int Health { get; private set; }
 
     private void Start()
     {
-        _health = _maxHealth;
+        Health = _maxHealth;
     }
 
-    public void ApplyHeal(float heal)
+    public void ApplyHeal(int heal)
     {
-        _health += heal;
+        Health += heal;
 
-        if (_health>=_maxHealth)
+        if (Health>=_maxHealth)
         {
-            _health = _maxHealth;
+            Health = _maxHealth;
         }
-
-        HealthChanged?.Invoke(_health);
     }
 
-    public void ApplyDamage(float damage)
+    public void ApplyDamage(int damage)
     {
-        _health -= damage;
+        Health -= damage;
 
-        if (_health <= _minHealth)
+        if (Health <= _minHealth)
         {
-            _health = _minHealth;
+            Health = _minHealth;
         }
-
-        HealthChanged?.Invoke(_health);
     }
 }
