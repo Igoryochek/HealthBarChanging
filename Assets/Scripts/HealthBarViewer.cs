@@ -12,12 +12,12 @@ public class HealthBarViewer : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.HealthChanged += OnChangeHealthBar;
+        _player.HealthChanged += OnHealthChanged;
     }
 
     private void OnDisable()
     {
-        _player.HealthChanged -= OnChangeHealthBar;
+        _player.HealthChanged -= OnHealthChanged;
     }
 
     private IEnumerator ChangeHealthBarValue(int targethealth)
@@ -29,7 +29,7 @@ public class HealthBarViewer : MonoBehaviour
         }
     }
 
-    private void OnChangeHealthBar(int health)
+    private void OnHealthChanged(int health)
     {
         if (_changingHealthBarValue != null)
         {
