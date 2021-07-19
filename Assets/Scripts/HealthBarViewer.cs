@@ -8,7 +8,7 @@ public class HealthBarViewer : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private int _speed;
 
-    private Coroutine changingHealthBarValue;
+    private Coroutine _changingHealthBarValue;
 
     private void OnEnable()
     {
@@ -31,11 +31,11 @@ public class HealthBarViewer : MonoBehaviour
 
     private void OnChangeHealthBar(int health)
     {
-        if (changingHealthBarValue != null)
+        if (_changingHealthBarValue != null)
         {
-            StopCoroutine(changingHealthBarValue);
+            StopCoroutine(_changingHealthBarValue);
         }
 
-        changingHealthBarValue = StartCoroutine(ChangeHealthBarValue(health));
+        _changingHealthBarValue = StartCoroutine(ChangeHealthBarValue(health));
     }
 }
